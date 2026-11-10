@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
-import { couple, finale, footer } from "@/content/story";
+import { couple, finale } from "@/content/story";
 import { HeartSparkles } from "@/components/HeartSparkles";
-import { ArrowRight, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 
 export function Finale() {
   return (
@@ -101,24 +101,95 @@ export function Finale() {
 
 export function RomanticFooter() {
   return (
-    <footer className="romantic-footer relative isolate overflow-hidden px-6 py-20 text-center sm:px-10 sm:py-28">
-      <HeartSparkles hearts={7} sparkles={12} />
-      <div className="relative z-10 mx-auto max-w-3xl">
-        <p className="chapter-eyebrow">One more thing, just for you</p>
-        <p className="mx-auto mt-5 max-w-2xl font-display text-xl italic leading-relaxed text-white/70 sm:text-2xl">
-          There's something more I want you to know... Something I could never fit into all these
-          words.
-        </p>
-        <Link to="/my-love-for-you" className="last-surprise-button mx-auto mt-9">
-          <Heart size={17} fill="currentColor" aria-hidden="true" />
-          One Last Surprise, Moiza
-          <ArrowRight size={17} aria-hidden="true" />
-        </Link>
-        <p className="mt-12 font-display text-lg tracking-[0.35em] text-white/70">
-          {couple.monogram}
-        </p>
-        <p className="mt-3 text-[0.6rem] uppercase tracking-[0.32em] text-white/40">
-          {footer.line1} · {footer.line2}
+    <footer className="romantic-footer relative isolate overflow-hidden px-6 py-24 text-center sm:px-10 sm:py-36">
+      <div className="romantic-footer-ambient" aria-hidden="true" />
+      <HeartSparkles hearts={9} sparkles={16} />
+      <div className="romantic-footer-content relative z-20 mx-auto max-w-4xl">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8 }}
+          className="footer-eyebrow"
+        >
+          Before you go, my love
+        </motion.p>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1, delay: 0.1 }}
+          className="footer-title mt-6 font-display"
+        >
+          Before You Go,
+          <br />
+          <span>My Love...</span>
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, delay: 0.25 }}
+          className="footer-intro mx-auto mt-7 max-w-2xl"
+        >
+          I&apos;ve shared so many feelings throughout this little world, but there&apos;s still
+          something special I want you to know.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="footer-promise mx-auto mt-10 max-w-3xl font-display"
+        >
+          You Mean More to Me
+          <br />
+          <span>Than Words Can Ever Explain.</span>
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.75, delay: 0.6 }}
+          className="mt-10"
+        >
+          <Link to="/my-love-for-you" className="footer-surprise-button">
+            <Heart size={19} fill="currentColor" aria-hidden="true" />
+            <span>Discover Your Special Surprise</span>
+          </Link>
+          <p className="footer-button-note mt-4">A little something from my heart, just for you.</p>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.85 }}
+          className="footer-signoff mt-14"
+        >
+          Made with endless love, just for you, {couple.her}.
+          <motion.span
+            className="inline-flex text-rose-glow"
+            animate={{ scale: [1, 1.16, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            aria-label="love"
+          >
+            <Heart size={17} fill="currentColor" aria-hidden="true" />
+          </motion.span>
+        </motion.p>
+
+        <div className="footer-divider mx-auto mt-10" aria-hidden="true">
+          <span />
+          <Heart size={13} fill="currentColor" />
+          <span />
+        </div>
+
+        <p className="footer-closing mt-6">
+          Every little piece of this experience was made with you in mind.
         </p>
       </div>
     </footer>
