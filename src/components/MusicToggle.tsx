@@ -2,19 +2,37 @@ import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import songUrl from "@/assets/golden-brown-best-part.mp3";
 
+let backgroundAudio: HTMLAudioElement | null = null;
+let pausedByUser = false;
+
+function getBackgroundAudio() {
+  if (typeof Audio === "undefined") return null;
+
+  if (!backgroundAudio) {
+    backgroundAudio = new Audio(songUrl);
+    backgroundAudio.loop = true;
+    backgroundAudio.volume = 0.45;
+    backgroundAudio.preload = "auto";
+  }
+
+  return backgroundAudio;
+}
+
 export function MusicToggle() {
   const ref = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [playbackError, setPlaybackError] = useState(false);
 
   useEffect(() => {
-    const audio = new Audio(songUrl);
-    audio.loop = true;
-    audio.volume = 0.45;
-    audio.preload = "none";
+    const audio = getBackgroundAudio();
+    if (!audio) return;
+
+    let active = true;
     ref.current = audio;
 
     const onPlay = () => {
+      removeInteractionListeners();
+      pausedByUser = false;
       setPlaying(true);
       setPlaybackError(false);
     };
@@ -23,16 +41,39 @@ export function MusicToggle() {
       setPlaying(false);
       setPlaybackError(true);
     };
+    const removeInteractionListeners = () => {
+      document.removeEventListener("pointerdown", resumeAfterInteraction);
+      document.removeEventListener("keydown", resumeAfterInteraction);
+    };
+    const resumeAfterInteraction = (event: Event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest("[data-music-toggle]")) return;
+      if (pausedByUser || !audio.paused) return;
+      audio.play().catch(() => {
+        if (active) setPlaybackError(true);
+      });
+    };
+    const startAutoplay = () => {
+      if (pausedByUser || !audio.paused) return;
+      audio.play().catch(() => {
+        if (!active) return;
+        setPlaybackError(true);
+        document.addEventListener("pointerdown", resumeAfterInteraction);
+        document.addEventListener("keydown", resumeAfterInteraction);
+      });
+    };
 
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
     audio.addEventListener("error", onError);
+    startAutoplay();
 
     return () => {
+      active = false;
+      removeInteractionListeners();
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
       audio.removeEventListener("error", onError);
-      audio.pause();
       ref.current = null;
     };
   }, []);
@@ -41,12 +82,14 @@ export function MusicToggle() {
     const audio = ref.current;
     if (!audio) return;
     if (audio.paused) {
+      pausedByUser = false;
       setPlaybackError(false);
       audio.play().catch(() => {
         setPlaying(false);
         setPlaybackError(true);
       });
     } else {
+      pausedByUser = true;
       audio.pause();
     }
   };
@@ -56,7 +99,8 @@ export function MusicToggle() {
       onClick={toggle}
       aria-label={playing ? "Pause background music" : "Play background music"}
       title={`${playing ? "Pause" : "Play"} Golden Brown`}
-      className="fixed right-4 top-1/2 z-[60] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border backdrop-blur-xl transition-all duration-500 hover:scale-110 sm:right-6"
+      data-music-toggle
+      className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border backdrop-blur-xl transition-all duration-300 hover:scale-110"
       style={{
         borderColor: "oklch(0.75 0.11 355 / 0.4)",
         background: "oklch(0.985 0.008 40 / 0.85)",
@@ -69,7 +113,7 @@ export function MusicToggle() {
       {playing ? <Volume2 size={18} /> : <VolumeX size={18} />}
       <span className="sr-only" role="status" aria-live="polite">
         {playbackError
-          ? "Background music could not be played. Try again."
+          ? "Background music is waiting for your first interaction."
           : playing
             ? "Background music playing."
             : ""}

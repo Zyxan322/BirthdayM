@@ -17,9 +17,12 @@ export function LoveMessagePage() {
           <ArrowLeft size={16} aria-hidden="true" />
           Back to the birthday story
         </Link>
-        <span className="text-rose-glow" aria-label="Birthday cake">
-          <Cake size={24} strokeWidth={1.7} aria-hidden="true" />
-        </span>
+        <div className="flex items-center gap-4">
+          <span className="text-rose-glow" aria-label="Birthday cake">
+            <Cake size={24} strokeWidth={1.7} aria-hidden="true" />
+          </span>
+          <MusicToggle />
+        </div>
       </header>
 
       <section className="love-message-opening relative z-10 flex min-h-[82svh] items-center px-6 py-24 sm:px-10">
@@ -38,9 +41,9 @@ export function LoveMessagePage() {
             transition={{ duration: 1, delay: 0.12 }}
             className="mt-7 max-w-4xl font-display text-5xl leading-[1.04] text-white sm:text-7xl lg:text-8xl"
           >
-            Moiza, before you leave...
+            Moiza,
             <br />
-            <span className="text-rose-glow">there&apos;s one more thing.</span>
+            <span className="text-rose-glow">one more thing...</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 18 }}
@@ -126,8 +129,6 @@ export function LoveMessagePage() {
           {couple.monogram} · Always with love
         </p>
       </footer>
-
-      <MusicToggle />
     </main>
   );
 }

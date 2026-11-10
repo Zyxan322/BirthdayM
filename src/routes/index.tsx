@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { MotionConfig } from "motion/react";
 import { Nav } from "@/components/Nav";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { MusicToggle } from "@/components/MusicToggle";
 import { Hero } from "@/components/sections/Hero";
 import { CountdownSection } from "@/components/sections/CountdownSection";
 import { WishesSection } from "@/components/sections/WishesSection";
@@ -81,7 +80,6 @@ function Index() {
       <main className="relative bg-background">
         <ScrollProgress />
         <Nav />
-        <MusicToggle />
         <Hero />
         <BirthdayIntro />
         <CountdownSection />

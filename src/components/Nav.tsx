@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { nav } from "@/content/story";
 import { cn } from "@/lib/utils";
 import { Cake, Menu, X } from "lucide-react";
+import { MusicToggle } from "@/components/MusicToggle";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,18 +59,21 @@ export function Nav() {
           ))}
         </ul>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className={cn(
-            "site-menu-toggle flex h-11 w-11 items-center justify-center rounded-md transition-colors xl:hidden",
-            scrolled && "is-scrolled",
-          )}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-2">
+          <MusicToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className={cn(
+              "site-menu-toggle flex h-11 w-11 items-center justify-center rounded-md transition-colors xl:hidden",
+              scrolled && "is-scrolled",
+            )}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>

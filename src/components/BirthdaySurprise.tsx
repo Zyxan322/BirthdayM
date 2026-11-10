@@ -141,6 +141,7 @@ export function BirthdaySurprise() {
               </li>
             </ul>
             <div className="flex items-center gap-3">
+              <MusicToggle />
               <Link to="/" className="surprise-back-link">
                 <ArrowLeft size={15} aria-hidden="true" />
                 <span>Back to home</span>
@@ -514,7 +515,6 @@ export function BirthdaySurprise() {
           </section>
         </motion.div>
       </main>
-      <MusicToggle />
     </MotionConfig>
   );
 }
