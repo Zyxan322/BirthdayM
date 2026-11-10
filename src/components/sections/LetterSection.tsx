@@ -1,8 +1,12 @@
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { letter } from "@/content/story";
 import { Reveal } from "@/components/Reveal";
 import { TiltCard } from "@/components/TiltCard";
 
 export function LetterSection() {
+  const [opened, setOpened] = useState(false);
+
   return (
     <section
       id="letter"
@@ -45,44 +49,73 @@ export function LetterSection() {
           </h2>
         </Reveal>
 
-        <div
-          className="relative mx-auto mt-14 max-w-3xl rounded-3xl px-8 py-14 sm:px-16"
-          style={{
-            background: "linear-gradient(160deg, oklch(1 0 0), oklch(0.985 0.012 78))",
-            boxShadow:
-              "0 50px 100px -50px oklch(0.42 0.05 48 / 0.2), inset 0 0 0 1px oklch(0.78 0.09 78 / 0.45)",
-          }}
-        >
-          <div
-            className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full text-lg"
-            style={{
-              background: "radial-gradient(circle at 35% 30%, oklch(0.72 0.085 50), var(--rose))",
-              boxShadow: "0 10px 24px -10px oklch(0.56 0.07 48 / 0.4)",
-              color: "oklch(0.98 0.02 40 / 0.9)",
-            }}
-            aria-hidden="true"
+        <div className="mx-auto mt-14 max-w-3xl">
+          <button
+            type="button"
+            className={`heart-letter-envelope ${opened ? "is-open" : ""}`}
+            aria-expanded={opened}
+            aria-controls="heart-letter-content"
+            onClick={() => setOpened((value) => !value)}
           >
-            ❤
-          </div>
+            <span className="heart-letter-seal" aria-hidden="true">
+              ♡
+            </span>
+            <span className="heart-letter-prompt">
+              {opened ? "A letter, with all my love" : "Open my heart"}
+            </span>
+            <span className="heart-letter-hint">A letter, written just for you</span>
+          </button>
+          <AnimatePresence initial={false}>
+            {opened && (
+              <motion.div
+                id="heart-letter-content"
+                initial={{ opacity: 0, y: 18, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
+                exit={{ opacity: 0, y: 12, height: 0 }}
+                transition={{ duration: 0.38, ease: [0.2, 0.8, 0.2, 1] }}
+                className="relative mt-8 overflow-hidden rounded-3xl px-8 py-14 sm:px-16"
+                style={{
+                  background: "linear-gradient(160deg, oklch(1 0 0), oklch(0.985 0.012 78))",
+                  boxShadow:
+                    "0 50px 100px -50px oklch(0.42 0.05 48 / 0.2), inset 0 0 0 1px oklch(0.78 0.09 78 / 0.45)",
+                }}
+              >
+                <div
+                  className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full text-lg"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 35% 30%, oklch(0.72 0.085 50), var(--rose))",
+                    boxShadow: "0 10px 24px -10px oklch(0.56 0.07 48 / 0.4)",
+                    color: "oklch(0.98 0.02 40 / 0.9)",
+                  }}
+                  aria-hidden="true"
+                >
+                  ❤
+                </div>
 
-          <p className="font-display text-3xl italic text-cocoa">{letter.salutation}</p>
+                <p className="font-display text-3xl italic text-cocoa">{letter.salutation}</p>
 
-          <div className="mt-8 space-y-5">
-            {letter.paragraphs.map((p, i) => (
-              <Reveal key={i} delay={0.02 * i} y={18}>
-                <p className="font-display text-lg leading-relaxed text-cocoa/85 sm:text-xl">{p}</p>
-              </Reveal>
-            ))}
-          </div>
+                <div className="mt-8 space-y-5">
+                  {letter.paragraphs.map((p, i) => (
+                    <Reveal key={i} delay={0.02 * i} y={18}>
+                      <p className="font-display text-lg leading-relaxed text-cocoa/85 sm:text-xl">
+                        {p}
+                      </p>
+                    </Reveal>
+                  ))}
+                </div>
 
-          <Reveal delay={0.15}>
-            <p
-              className="mt-12 text-right font-display text-2xl italic"
-              style={{ color: "var(--rose)" }}
-            >
-              {letter.signature}
-            </p>
-          </Reveal>
+                <Reveal delay={0.15}>
+                  <p
+                    className="mt-12 text-right font-display text-2xl italic"
+                    style={{ color: "var(--rose)" }}
+                  >
+                    {letter.signature}
+                  </p>
+                </Reveal>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

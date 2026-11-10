@@ -42,7 +42,7 @@ export function Hero() {
         muted
         loop
         playsInline
-        preload="none"
+        preload="auto"
         poster={hero.cake}
         aria-hidden="true"
         tabIndex={-1}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
-import songUrl from "@/assets/Golden Brown - The Stranglers (slowed + reverb).mp3";
+import songUrl from "@/assets/golden-brown-best-part.mp3";
 
 export function MusicToggle() {
   const ref = useRef<HTMLAudioElement | null>(null);

@@ -13,7 +13,7 @@ const ICONS: Record<string, LucideIcon> = {
 
 export function WishesSection() {
   return (
-    <section id="wishes" className="relative overflow-hidden py-28 sm:py-36">
+    <section id="wishes" className="night-chapter relative overflow-hidden py-28 sm:py-36">
       <div
         className="pointer-events-none absolute inset-0"
         style={{

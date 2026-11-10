@@ -47,7 +47,7 @@ export function MomentsSection() {
   return (
     <section
       id="moments"
-      className="relative overflow-hidden py-28 sm:py-36"
+      className="night-chapter relative overflow-hidden py-28 sm:py-36"
       style={{
         background:
           "linear-gradient(180deg, var(--cream), oklch(0.94 0.035 48) 50%, var(--cream) 100%)",

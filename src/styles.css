@@ -720,25 +720,6 @@
   background: oklch(1 0 0 / 0.74);
 }
 
-.finale-surprise-toggle {
-  border: 1px solid oklch(0.62 0.085 65 / 0.35);
-  background: oklch(0.985 0.012 78 / 0.68);
-  color: var(--cocoa);
-  box-shadow: 0 12px 30px -20px oklch(0.32 0.05 48 / 0.38);
-}
-
-.finale-surprise-toggle:hover {
-  transform: translateY(-2px);
-  border-color: oklch(0.56 0.095 35 / 0.55);
-  background: oklch(0.995 0.01 78);
-}
-
-.finale-surprise-message {
-  border: 1px solid oklch(0.68 0.07 55 / 0.2);
-  background: linear-gradient(145deg, oklch(1 0 0 / 0.82), oklch(0.97 0.025 66 / 0.78));
-  box-shadow: var(--shadow-soft);
-}
-
 @keyframes hero-image-settle {
   from {
     transform: scale(1.05);
@@ -810,5 +791,1146 @@
         oklch(0.22 0.025 48 / 0.08) 100%
       ),
       linear-gradient(90deg, oklch(0.2 0.025 48 / 0.24), transparent 100%);
+  }
+}
+
+.scroll-progress {
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  pointer-events: none;
+  background: oklch(0.76 0.08 330 / 0.16);
+}
+
+.scroll-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, oklch(0.72 0.11 355), oklch(0.82 0.085 78));
+  box-shadow: 0 0 14px oklch(0.75 0.11 355 / 0.6);
+  will-change: transform;
+}
+
+.night-chapter {
+  --cocoa: oklch(0.95 0.012 80);
+  --rose: oklch(0.77 0.11 355);
+  --gold-deep: oklch(0.82 0.075 82);
+  position: relative;
+  color: oklch(0.95 0.012 80);
+  background:
+    radial-gradient(52rem 36rem at 88% 8%, oklch(0.32 0.07 330 / 0.3), transparent 72%),
+    radial-gradient(42rem 34rem at 5% 90%, oklch(0.28 0.07 15 / 0.22), transparent 74%),
+    linear-gradient(145deg, oklch(0.12 0.02 285), oklch(0.16 0.035 315) 52%, oklch(0.115 0.023 280)) !important;
+}
+
+.night-chapter .text-cocoa {
+  color: oklch(0.94 0.012 80);
+}
+
+.night-chapter .text-cocoa\/80 {
+  color: oklch(0.92 0.014 80 / 0.8);
+}
+
+.night-chapter .text-cocoa\/70 {
+  color: oklch(0.92 0.014 80 / 0.7);
+}
+
+.night-chapter .text-cocoa\/65 {
+  color: oklch(0.92 0.014 80 / 0.65);
+}
+
+.night-chapter .text-cocoa\/60 {
+  color: oklch(0.92 0.014 80 / 0.6);
+}
+
+.night-chapter .text-cocoa\/55,
+.night-chapter .text-cocoa\/45 {
+  color: oklch(0.92 0.014 80 / 0.5);
+}
+
+.night-chapter .surface-glass {
+  border-color: oklch(0.78 0.08 340 / 0.18);
+  background: linear-gradient(145deg, oklch(0.25 0.035 310 / 0.85), oklch(0.17 0.025 285 / 0.88));
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.07),
+    0 24px 60px -36px oklch(0.03 0.02 285 / 0.72);
+}
+
+.chapter-eyebrow {
+  color: oklch(0.82 0.085 356);
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+.chapter-title {
+  color: oklch(0.97 0.012 80);
+  font-family: var(--font-display);
+  font-size: clamp(2.45rem, 5vw, 4.65rem);
+  font-weight: 300;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.chapter-title-light {
+  color: var(--cocoa);
+}
+
+.chapter-copy {
+  color: oklch(0.91 0.015 80 / 0.68);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+.chapter-rule {
+  display: block;
+  width: 3.8rem;
+  height: 1px;
+  background: linear-gradient(90deg, oklch(0.76 0.1 355), oklch(0.84 0.08 82));
+  box-shadow: 0 0 16px oklch(0.77 0.11 355 / 0.4);
+}
+
+.text-rose-glow {
+  color: oklch(0.85 0.105 355);
+  text-shadow: 0 0 32px oklch(0.72 0.13 355 / 0.35);
+}
+
+.story-intro {
+  isolation: isolate;
+  background: oklch(0.12 0.02 285);
+}
+
+.story-intro-image {
+  z-index: -2;
+  background-position: center 45%;
+  background-size: cover;
+  opacity: 0.42;
+  transform: scale(1.02);
+}
+
+.story-intro-overlay {
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      oklch(0.1 0.02 285 / 0.94),
+      oklch(0.12 0.02 285 / 0.72) 58%,
+      transparent
+    ),
+    linear-gradient(0deg, oklch(0.11 0.02 285 / 0.68), transparent 72%);
+}
+
+.story-scroll-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: oklch(0.92 0.014 80 / 0.76);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.heart-letter-envelope {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 10rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  appearance: none;
+  overflow: hidden;
+  border: 1px solid oklch(0.66 0.1 355 / 0.28);
+  border-radius: 1.35rem;
+  background:
+    linear-gradient(145deg, oklch(0.995 0.01 78 / 0.86), oklch(0.94 0.035 45 / 0.9)),
+    var(--gradient-rose);
+  box-shadow: 0 28px 65px -36px oklch(0.45 0.06 48 / 0.3);
+  cursor: pointer;
+  list-style: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.heart-letter-envelope:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 34px 72px -36px oklch(0.45 0.06 48 / 0.38);
+}
+
+.heart-letter-seal {
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, oklch(0.72 0.085 50), var(--rose));
+  box-shadow: 0 8px 22px -10px oklch(0.56 0.07 48 / 0.48);
+  color: white;
+  font-size: 1.3rem;
+  transition: transform 0.35s ease;
+}
+
+.heart-letter-envelope.is-open .heart-letter-seal {
+  transform: rotate(-12deg) scale(0.92);
+}
+
+.heart-letter-prompt {
+  color: var(--cocoa);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-style: italic;
+}
+
+.heart-letter-hint {
+  color: oklch(0.38 0.035 48 / 0.62);
+  font-size: 0.6rem;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.meaning-chapter {
+  background:
+    radial-gradient(40rem 35rem at 80% 55%, oklch(0.34 0.1 330 / 0.28), transparent 74%),
+    linear-gradient(140deg, oklch(0.105 0.022 285), oklch(0.17 0.04 315) 60%, oklch(0.1 0.025 290)) !important;
+}
+
+.meaning-orbit,
+.world-light,
+.crazy-love-glow,
+.reason-halo,
+.celebration-glow,
+.smiles-orb,
+.ending-heart-glow {
+  position: absolute;
+  z-index: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.meaning-orbit-one {
+  top: 10%;
+  right: -9rem;
+  width: 30rem;
+  height: 30rem;
+  border: 1px solid oklch(0.8 0.08 340 / 0.13);
+  box-shadow:
+    inset 0 0 70px oklch(0.78 0.1 355 / 0.08),
+    0 0 90px oklch(0.76 0.1 355 / 0.06);
+}
+
+.meaning-orbit-two {
+  right: 1rem;
+  bottom: -16rem;
+  width: 37rem;
+  height: 37rem;
+  background: radial-gradient(circle, oklch(0.43 0.1 325 / 0.2), transparent 70%);
+}
+
+.favourite-photo-main {
+  position: relative;
+  min-height: 28rem;
+  overflow: hidden;
+  border: 1px solid oklch(0.83 0.08 82 / 0.42);
+  border-radius: 1.6rem;
+  background: oklch(0.2 0.03 315);
+  box-shadow: 0 38px 90px -50px oklch(0.02 0.02 280 / 0.9);
+}
+
+.favourite-photo-main::after {
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(0deg, oklch(0.1 0.02 285 / 0.82), transparent);
+  content: "";
+}
+
+.favourite-photo-main img,
+.favourite-photo-inset img,
+.celebration-image-wrap > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.favourite-photo-main span {
+  position: absolute;
+  z-index: 1;
+  right: 1.5rem;
+  bottom: 1.4rem;
+  left: 1.5rem;
+  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-style: italic;
+}
+
+.favourite-photo-inset {
+  position: absolute;
+  right: -1rem;
+  bottom: -2.2rem;
+  width: 36%;
+  height: 11rem;
+  overflow: hidden;
+  border: 4px solid oklch(0.17 0.025 285);
+  border-radius: 1.1rem;
+  box-shadow: 0 20px 50px -30px black;
+}
+
+.favourite-photo-index {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid oklch(1 0 0 / 0.2);
+  border-radius: 999px;
+  padding: 0.6rem 0.8rem;
+  background: oklch(0.1 0.02 285 / 0.58);
+  color: oklch(0.9 0.08 82);
+  font-family: var(--font-display);
+  backdrop-filter: blur(12px);
+}
+
+.reason-halo {
+  top: 8%;
+  left: 50%;
+  width: 48rem;
+  height: 35rem;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, oklch(0.34 0.085 330 / 0.23), transparent 70%);
+}
+
+.reason-detail-card {
+  min-height: 6rem;
+  overflow: hidden;
+  border: 1px solid oklch(0.8 0.08 350 / 0.16);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, oklch(0.24 0.035 315 / 0.78), oklch(0.17 0.025 285 / 0.9));
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.reason-detail-card:hover,
+.reason-detail-card[open] {
+  border-color: oklch(0.77 0.11 355 / 0.45);
+  background: linear-gradient(145deg, oklch(0.29 0.045 320 / 0.9), oklch(0.18 0.03 285 / 0.96));
+}
+
+.reason-detail-card summary {
+  display: grid;
+  min-height: 6rem;
+  grid-template-columns: 2.8rem 1fr auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.15rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.reason-detail-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.reason-card-number {
+  color: oklch(0.84 0.08 82);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+}
+
+.reason-card-hint {
+  color: oklch(0.94 0.015 80 / 0.72);
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+}
+
+.reason-card-heart {
+  color: oklch(0.8 0.11 355);
+  transition: transform 0.25s ease;
+}
+
+.reason-detail-card[open] .reason-card-heart {
+  transform: scale(1.15);
+  fill: currentColor;
+}
+
+.reason-detail-card > p {
+  margin: 0;
+  border-top: 1px solid oklch(0.82 0.08 350 / 0.13);
+  padding: 1rem 1.3rem 1.35rem 4.9rem;
+  color: oklch(0.93 0.015 80 / 0.78);
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+.story-outline-button,
+.story-glow-button,
+.story-text-button {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.story-outline-button {
+  border: 1px solid oklch(0.78 0.09 355 / 0.48);
+  border-radius: 999px;
+  padding: 0.8rem 1.35rem;
+  color: oklch(0.95 0.015 80);
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.story-outline-button:hover {
+  transform: translateY(-2px);
+  background: oklch(0.78 0.1 355 / 0.12);
+}
+
+.world-chapter {
+  background:
+    radial-gradient(50rem 34rem at 50% 45%, oklch(0.3 0.085 325 / 0.28), transparent 75%),
+    linear-gradient(160deg, oklch(0.1 0.02 285), oklch(0.16 0.035 310) 52%, oklch(0.1 0.025 280)) !important;
+}
+
+.world-light-left {
+  top: 18%;
+  left: 8%;
+  width: 16rem;
+  height: 16rem;
+  background: radial-gradient(circle, oklch(0.75 0.1 355 / 0.13), transparent 72%);
+}
+
+.world-light-right {
+  right: 7%;
+  bottom: 10%;
+  width: 20rem;
+  height: 20rem;
+  background: radial-gradient(circle, oklch(0.8 0.09 285 / 0.13), transparent 70%);
+}
+
+.quality-card,
+.future-hope-card,
+.promise-card {
+  position: relative;
+  min-height: 15rem;
+  overflow: hidden;
+  border: 1px solid oklch(0.81 0.08 350 / 0.17);
+  border-radius: 1.2rem;
+  padding: 1.7rem;
+  background: linear-gradient(150deg, oklch(0.24 0.035 315 / 0.84), oklch(0.15 0.025 285 / 0.9));
+  box-shadow: 0 25px 65px -45px oklch(0.02 0.02 280 / 0.85);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.quality-card:hover,
+.future-hope-card:hover,
+.promise-card:hover {
+  transform: translateY(-4px);
+  border-color: oklch(0.78 0.11 355 / 0.46);
+}
+
+.quality-card > span,
+.future-hope-card > span,
+.promise-card-index {
+  color: oklch(0.85 0.08 82);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+}
+
+.quality-card h3,
+.future-hope-card h3,
+.promise-card h3 {
+  margin-top: 1.5rem;
+  color: oklch(0.97 0.012 80);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.quality-card p,
+.future-hope-card p,
+.promise-card p {
+  margin-top: 0.8rem;
+  color: oklch(0.92 0.015 80 / 0.65);
+  font-size: 0.84rem;
+  line-height: 1.8;
+}
+
+.quality-card > svg {
+  position: absolute;
+  right: 1.7rem;
+  bottom: 1.5rem;
+  color: oklch(0.8 0.11 355 / 0.7);
+}
+
+.quality-card-2,
+.quality-card-5 {
+  background: linear-gradient(150deg, oklch(0.24 0.05 340 / 0.82), oklch(0.15 0.025 285 / 0.92));
+}
+
+.universe-chapter {
+  background:
+    radial-gradient(38rem 38rem at 80% 50%, oklch(0.32 0.08 290 / 0.28), transparent 72%),
+    linear-gradient(145deg, oklch(0.08 0.025 280), oklch(0.15 0.04 310) 60%, oklch(0.1 0.02 285)) !important;
+}
+
+.universe-stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, white 50%, transparent 100%),
+    radial-gradient(2px 2px at 73% 18%, oklch(0.9 0.08 82) 50%, transparent 100%),
+    radial-gradient(1px 1px at 88% 74%, white 50%, transparent 100%),
+    radial-gradient(1px 1px at 45% 82%, oklch(0.85 0.1 355) 50%, transparent 100%),
+    radial-gradient(2px 2px at 29% 56%, white 50%, transparent 100%),
+    radial-gradient(1px 1px at 94% 40%, white 50%, transparent 100%);
+  background-size: 400px 300px;
+}
+
+.universe-ring {
+  position: absolute;
+  top: 50%;
+  left: 77%;
+  width: 30rem;
+  height: 30rem;
+  border: 1px solid oklch(0.79 0.08 330 / 0.12);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.universe-ring-two {
+  width: 21rem;
+  height: 21rem;
+  border-color: oklch(0.85 0.08 82 / 0.13);
+}
+
+.universe-note-card {
+  position: relative;
+  min-height: 19rem;
+  border: 1px solid oklch(0.86 0.07 82 / 0.2);
+  border-radius: 1.6rem;
+  padding: 2.5rem;
+  background: linear-gradient(145deg, oklch(0.24 0.04 310 / 0.8), oklch(0.13 0.025 285 / 0.9));
+  box-shadow: 0 32px 90px -50px black;
+  backdrop-filter: blur(18px);
+}
+
+.universe-note-star {
+  display: flex;
+  width: 2.8rem;
+  height: 2.8rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid oklch(0.87 0.08 82 / 0.28);
+  border-radius: 50%;
+  color: oklch(0.87 0.08 82);
+}
+
+.universe-note-card > p {
+  min-height: 5rem;
+  margin-top: 1.5rem;
+  color: oklch(0.96 0.015 80);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.story-text-button {
+  margin-top: 1rem;
+  color: oklch(0.87 0.08 82);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.crazy-love-chapter {
+  background:
+    radial-gradient(48rem 42rem at 76% 45%, oklch(0.32 0.085 330 / 0.24), transparent 70%),
+    linear-gradient(145deg, oklch(0.075 0.018 280), oklch(0.15 0.035 310) 58%, oklch(0.09 0.02 280)) !important;
+}
+
+.crazy-love-glow {
+  top: 12%;
+  right: -5rem;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle, oklch(0.79 0.11 355 / 0.12), transparent 70%);
+}
+
+.future-hope-card {
+  min-height: 14rem;
+  padding-top: 2rem;
+}
+
+.future-hope-card:nth-child(3n + 2) {
+  transform: translateY(1.5rem);
+}
+
+.future-hope-card:nth-child(3n + 2):hover {
+  transform: translateY(calc(1.5rem - 4px));
+}
+
+.celebration-chapter {
+  background:
+    radial-gradient(34rem 34rem at 18% 52%, oklch(0.36 0.08 355 / 0.26), transparent 72%),
+    linear-gradient(135deg, oklch(0.11 0.02 285), oklch(0.2 0.04 320) 55%, oklch(0.12 0.025 285)) !important;
+}
+
+.celebration-image-wrap {
+  position: relative;
+  min-height: 25rem;
+  overflow: hidden;
+  border: 1px solid oklch(0.88 0.075 82 / 0.4);
+  border-radius: 1.7rem;
+  background: oklch(0.22 0.035 310);
+  box-shadow: 0 40px 90px -48px black;
+}
+
+.celebration-image-wrap > img {
+  position: absolute;
+  inset: 0;
+  filter: brightness(0.78) saturate(0.88);
+}
+
+.celebration-candle {
+  position: absolute;
+  top: 14%;
+  left: 51%;
+  width: 0.55rem;
+  height: 4rem;
+  border-radius: 0.2rem;
+  background: linear-gradient(
+    90deg,
+    oklch(0.85 0.07 355),
+    oklch(0.97 0.03 82),
+    oklch(0.78 0.1 355)
+  );
+  box-shadow: 0 0 28px oklch(0.9 0.08 82 / 0.32);
+}
+
+.celebration-candle span {
+  position: absolute;
+  top: -1.1rem;
+  left: 50%;
+  width: 0.8rem;
+  height: 1.2rem;
+  border-radius: 70% 30% 65% 35%;
+  background: radial-gradient(
+    ellipse at 50% 72%,
+    white 0%,
+    oklch(0.92 0.12 78) 27%,
+    oklch(0.77 0.12 355 / 0.7) 76%
+  );
+  filter: drop-shadow(0 0 12px oklch(0.92 0.11 78 / 0.85));
+  transform: translateX(-50%) rotate(45deg);
+  animation: candle-flicker 1.8s ease-in-out infinite alternate;
+}
+
+.celebration-confetti {
+  position: absolute;
+  z-index: 3;
+  top: 45%;
+  left: 50%;
+  width: 0.45rem;
+  height: 0.7rem;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.open-when-chapter {
+  background:
+    radial-gradient(38rem 28rem at 96% 12%, oklch(0.34 0.08 320 / 0.25), transparent 72%),
+    linear-gradient(145deg, oklch(0.105 0.02 285), oklch(0.18 0.04 315) 62%, oklch(0.105 0.02 280)) !important;
+}
+
+.open-when-card {
+  overflow: hidden;
+  border: 1px solid oklch(0.82 0.08 350 / 0.18);
+  border-radius: 1rem;
+  background: oklch(0.22 0.035 310 / 0.65);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.open-when-card.is-open {
+  border-color: oklch(0.8 0.1 355 / 0.46);
+  background: oklch(0.24 0.04 315 / 0.83);
+}
+
+.open-when-card > button {
+  display: grid;
+  width: 100%;
+  min-height: 4.8rem;
+  grid-template-columns: 2.5rem 1fr auto;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.2rem;
+  color: oklch(0.97 0.012 80);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  text-align: left;
+}
+
+.open-when-card > button svg {
+  color: oklch(0.83 0.1 355);
+}
+
+.open-when-number {
+  color: oklch(0.84 0.075 82);
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+}
+
+.open-when-message {
+  border-top: 1px solid oklch(0.82 0.08 350 / 0.15);
+  padding: 1.2rem 1.3rem 1.4rem 4.5rem;
+  color: oklch(0.93 0.015 80 / 0.73);
+  font-size: 0.86rem;
+  line-height: 1.85;
+}
+
+.chapter-timeline {
+  background:
+    radial-gradient(34rem 30rem at 50% 52%, oklch(0.31 0.08 330 / 0.23), transparent 70%),
+    linear-gradient(145deg, oklch(0.1 0.02 280), oklch(0.16 0.035 315)) !important;
+}
+
+.chapter-timeline-list {
+  position: relative;
+  display: grid;
+  gap: 2.4rem;
+}
+
+.chapter-timeline-list::before {
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  width: 1px;
+  background: linear-gradient(
+    transparent,
+    oklch(0.8 0.1 355 / 0.6),
+    oklch(0.84 0.08 82 / 0.45),
+    transparent
+  );
+  content: "";
+}
+
+.chapter-timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 1.5rem;
+}
+
+.chapter-timeline-marker {
+  z-index: 1;
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid oklch(0.85 0.09 355 / 0.58);
+  border-radius: 50%;
+  background: oklch(0.18 0.035 310);
+  color: oklch(0.86 0.1 355);
+  box-shadow: 0 0 20px oklch(0.77 0.1 355 / 0.22);
+}
+
+.chapter-timeline-item > div > p {
+  color: oklch(0.86 0.08 82);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.chapter-timeline-item h3 {
+  margin-top: 0.55rem;
+  color: oklch(0.97 0.012 80);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.chapter-timeline-item > div > span {
+  display: block;
+  max-width: 42rem;
+  margin-top: 0.5rem;
+  color: oklch(0.92 0.015 80 / 0.66);
+  font-size: 0.86rem;
+  line-height: 1.8;
+}
+
+.promise-card {
+  min-height: 16rem;
+}
+
+.promise-card > svg {
+  display: block;
+  margin-top: 1.4rem;
+  color: oklch(0.84 0.1 355);
+}
+
+.promise-card h3 {
+  margin-top: 1rem;
+}
+
+.smiles-chapter {
+  overflow: hidden;
+  background:
+    radial-gradient(52rem 34rem at 92% 10%, oklch(0.94 0.04 60 / 0.9), transparent 72%),
+    radial-gradient(40rem 30rem at 6% 96%, oklch(0.93 0.05 355 / 0.44), transparent 72%),
+    linear-gradient(145deg, oklch(0.985 0.01 78), oklch(0.955 0.03 50)) !important;
+}
+
+.smiles-chapter .chapter-eyebrow {
+  color: var(--gold-deep);
+}
+
+.smiles-chapter .chapter-copy {
+  color: oklch(0.36 0.035 48 / 0.72);
+}
+
+.birthday-hope {
+  display: grid;
+  grid-template-columns: 2.3rem 1fr;
+  gap: 1rem;
+  border-bottom: 1px solid oklch(0.55 0.07 48 / 0.14);
+  padding: 1.2rem 0;
+  color: oklch(0.32 0.035 48 / 0.82);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.birthday-hope > span {
+  color: var(--gold-deep);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+}
+
+.finale-chapter {
+  background: radial-gradient(
+    70% 60% at 50% 30%,
+    oklch(0.27 0.065 325),
+    oklch(0.15 0.035 285) 58%,
+    oklch(0.1 0.02 280)
+  ) !important;
+}
+
+.romantic-footer {
+  background:
+    radial-gradient(40rem 28rem at 50% 0%, oklch(0.31 0.07 330 / 0.4), transparent 75%),
+    linear-gradient(180deg, oklch(0.1 0.02 280), oklch(0.075 0.015 280));
+}
+
+.last-surprise-button {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  min-height: 3.6rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.9rem 1.6rem;
+  background:
+    linear-gradient(135deg, oklch(0.21 0.04 315), oklch(0.14 0.03 285)) padding-box,
+    linear-gradient(120deg, oklch(0.77 0.12 355), oklch(0.85 0.09 82), oklch(0.72 0.12 320))
+      border-box;
+  color: oklch(0.97 0.012 80);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 32px oklch(0.74 0.11 355 / 0.2),
+    0 18px 48px -26px black;
+  animation: heart-beat-soft 2.8s ease-in-out infinite;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.last-surprise-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 0 48px oklch(0.74 0.11 355 / 0.38),
+    0 22px 54px -26px black;
+  animation-play-state: paused;
+}
+
+.story-intro-overlay,
+.story-intro-image,
+.meaning-orbit,
+.world-light,
+.universe-stars,
+.universe-ring,
+.crazy-love-glow,
+.reason-halo,
+.celebration-glow,
+.smiles-orb,
+.ending-heart-glow {
+  pointer-events: none;
+}
+
+.love-message-page {
+  color: oklch(0.96 0.014 80);
+  background:
+    radial-gradient(56rem 44rem at 100% 0%, oklch(0.29 0.08 320 / 0.25), transparent 72%),
+    radial-gradient(50rem 42rem at 0% 50%, oklch(0.27 0.07 355 / 0.15), transparent 74%),
+    linear-gradient(
+      160deg,
+      oklch(0.075 0.018 280),
+      oklch(0.12 0.03 305) 55%,
+      oklch(0.075 0.018 280)
+    );
+}
+
+.love-message-ambient {
+  position: absolute;
+  z-index: -1;
+  top: 20%;
+  right: -15rem;
+  width: 38rem;
+  height: 38rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.4 0.1 330 / 0.15), transparent 72%);
+  pointer-events: none;
+}
+
+.love-message-header {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid oklch(0.85 0.08 355 / 0.12);
+  padding: 0.8rem clamp(1.25rem, 5vw, 4.5rem);
+  background: oklch(0.08 0.018 280 / 0.55);
+  backdrop-filter: blur(16px);
+}
+
+.love-message-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: oklch(0.94 0.015 80 / 0.72);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  transition: color 0.2s ease;
+}
+
+.love-message-back:hover {
+  color: oklch(0.86 0.1 355);
+}
+
+.love-message-opening {
+  background:
+    radial-gradient(42rem 36rem at 82% 50%, oklch(0.32 0.09 330 / 0.2), transparent 74%),
+    linear-gradient(180deg, transparent, oklch(0.1 0.025 300 / 0.22));
+}
+
+.love-letter-body {
+  padding-top: 1rem;
+}
+
+.love-letter-salutation {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-bottom: 1px solid oklch(0.85 0.08 355 / 0.22);
+  padding: 1.4rem 0 1.8rem;
+  color: oklch(0.84 0.09 355);
+}
+
+.love-letter-salutation p {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-style: italic;
+}
+
+.love-letter-paragraphs {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 2.2rem;
+}
+
+.love-letter-paragraph {
+  position: relative;
+  border: 1px solid oklch(0.83 0.08 350 / 0.12);
+  border-radius: 1.1rem;
+  padding: clamp(1.35rem, 3vw, 2.1rem);
+  background: linear-gradient(145deg, oklch(0.2 0.035 310 / 0.56), oklch(0.12 0.025 285 / 0.66));
+  box-shadow: 0 24px 70px -55px black;
+}
+
+.love-letter-paragraph:nth-child(odd) {
+  margin-right: clamp(0rem, 6vw, 4rem);
+}
+
+.love-letter-paragraph:nth-child(even) {
+  margin-left: clamp(0rem, 6vw, 4rem);
+  background: linear-gradient(145deg, oklch(0.23 0.045 330 / 0.55), oklch(0.13 0.025 285 / 0.68));
+}
+
+.love-letter-paragraph > span {
+  color: oklch(0.85 0.08 82);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+}
+
+.love-letter-paragraph > p {
+  margin-top: 0.75rem;
+  color: oklch(0.95 0.015 80 / 0.77);
+  font-size: 0.96rem;
+  font-weight: 300;
+  line-height: 2;
+}
+
+.love-letter-paragraph-1 {
+  border-top-color: oklch(0.84 0.1 355 / 0.42);
+}
+
+.love-letter-signature > p:first-child {
+  color: oklch(0.93 0.014 80 / 0.62);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.love-letter-ending {
+  background:
+    radial-gradient(42rem 35rem at 50% 52%, oklch(0.36 0.105 330 / 0.27), transparent 72%),
+    linear-gradient(180deg, transparent, oklch(0.08 0.02 285 / 0.78));
+}
+
+.ending-heart-glow {
+  top: 17%;
+  left: 50%;
+  width: 31rem;
+  height: 31rem;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, oklch(0.75 0.12 355 / 0.13), transparent 70%);
+}
+
+.love-message-home-button {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  border: 1px solid oklch(0.84 0.085 355 / 0.32);
+  border-radius: 999px;
+  padding: 0.8rem 1.4rem;
+  color: oklch(0.96 0.014 80);
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.love-message-home-button:hover {
+  transform: translateY(-2px);
+  background: oklch(0.78 0.1 355 / 0.12);
+}
+
+.love-message-footer {
+  border-top: 1px solid oklch(0.85 0.08 355 / 0.12);
+  background: oklch(0.07 0.015 280 / 0.65);
+}
+
+@keyframes heart-beat-soft {
+  0%,
+  100% {
+    box-shadow:
+      0 0 32px oklch(0.74 0.11 355 / 0.2),
+      0 18px 48px -26px black;
+  }
+  50% {
+    box-shadow:
+      0 0 46px oklch(0.74 0.11 355 / 0.34),
+      0 18px 48px -26px black;
+  }
+}
+
+@keyframes candle-flicker {
+  from {
+    transform: translateX(-50%) rotate(43deg) scale(0.95);
+  }
+  to {
+    transform: translateX(-50%) rotate(47deg) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress span {
+    will-change: auto;
+  }
+
+  .last-surprise-button,
+  .celebration-candle span {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .story-intro-overlay {
+    background:
+      linear-gradient(
+        0deg,
+        oklch(0.1 0.02 285 / 0.94),
+        oklch(0.12 0.02 285 / 0.58) 72%,
+        oklch(0.12 0.02 285 / 0.28)
+      ),
+      linear-gradient(90deg, oklch(0.1 0.02 285 / 0.45), transparent);
+  }
+
+  .favourite-photo-main {
+    min-height: 23rem;
+  }
+
+  .favourite-photo-inset {
+    right: -0.15rem;
+    bottom: -1.5rem;
+    height: 8rem;
+  }
+
+  .future-hope-card:nth-child(3n + 2),
+  .future-hope-card:nth-child(3n + 2):hover {
+    transform: none;
+  }
+
+  .celebration-image-wrap {
+    min-height: 20rem;
+  }
+
+  .love-letter-paragraph:nth-child(odd),
+  .love-letter-paragraph:nth-child(even) {
+    margin-inline: 0;
+  }
+
+  .love-letter-paragraph > p {
+    font-size: 0.9rem;
+    line-height: 1.85;
   }
 }

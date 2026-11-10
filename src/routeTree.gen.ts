@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BirthdaySurpriseRouteImport } from './routes/birthday-surprise'
+import { Route as MyLoveForYouRouteImport } from './routes/my-love-for-you'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const BirthdaySurpriseRoute = BirthdaySurpriseRouteImport.update({
   path: '/birthday-surprise',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MyLoveForYouRoute = MyLoveForYouRouteImport.update({
+  id: '/my-love-for-you',
+  path: '/my-love-for-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/birthday-surprise': typeof BirthdaySurpriseRoute
+  '/my-love-for-you': typeof MyLoveForYouRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/birthday-surprise': typeof BirthdaySurpriseRoute
+  '/my-love-for-you': typeof MyLoveForYouRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/birthday-surprise': typeof BirthdaySurpriseRoute
+  '/my-love-for-you': typeof MyLoveForYouRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/birthday-surprise'
+  fullPaths: '/' | '/birthday-surprise' | '/my-love-for-you'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/birthday-surprise'
-  id: '__root__' | '/' | '/birthday-surprise'
+  to: '/' | '/birthday-surprise' | '/my-love-for-you'
+  id: '__root__' | '/' | '/birthday-surprise' | '/my-love-for-you'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BirthdaySurpriseRoute: typeof BirthdaySurpriseRoute
+  MyLoveForYouRoute: typeof MyLoveForYouRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BirthdaySurpriseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/my-love-for-you': {
+      id: '/my-love-for-you'
+      path: '/my-love-for-you'
+      fullPath: '/my-love-for-you'
+      preLoaderRoute: typeof MyLoveForYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BirthdaySurpriseRoute: BirthdaySurpriseRoute,
+  MyLoveForYouRoute: MyLoveForYouRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

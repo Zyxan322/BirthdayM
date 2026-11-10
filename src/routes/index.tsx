@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { MotionConfig } from "motion/react";
 import { Nav } from "@/components/Nav";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { MusicToggle } from "@/components/MusicToggle";
 import { Hero } from "@/components/sections/Hero";
 import { CountdownSection } from "@/components/sections/CountdownSection";
@@ -9,8 +10,24 @@ import { WishesSection } from "@/components/sections/WishesSection";
 import { LetterSection } from "@/components/sections/LetterSection";
 import { GiftsSection } from "@/components/sections/GiftsSection";
 import { MomentsSection } from "@/components/sections/MomentsSection";
-import { Finale } from "@/components/sections/Finale";
-import { couple, footer, images } from "@/content/story";
+import { Finale, RomanticFooter } from "@/components/sections/Finale";
+import {
+  BirthdayIntro,
+  ChapterSection,
+  CelebrationSection,
+  CrazyLoveSection,
+  FavouritePersonSection,
+  FutureSection,
+  MeaningSection,
+  OpenWhenSection,
+  PromisesSection,
+  ReasonsSection,
+  SpecialQualitiesSection,
+  ThousandSmilesSection,
+  UniverseSection,
+  WorldSection,
+} from "@/components/sections/RomanticJourney";
+import { images } from "@/content/story";
 
 const title = "Happy Birthday, Moiza! ♡ — 19th November, from Zeeshan";
 const description =
@@ -62,26 +79,31 @@ function Index() {
   return (
     <MotionConfig reducedMotion="user">
       <main className="relative bg-background">
+        <ScrollProgress />
         <Nav />
         <MusicToggle />
         <Hero />
+        <BirthdayIntro />
         <CountdownSection />
+        <MeaningSection />
+        <FavouritePersonSection />
+        <ReasonsSection />
+        <WorldSection />
+        <SpecialQualitiesSection />
+        <UniverseSection />
         <WishesSection />
         <LetterSection />
+        <CrazyLoveSection />
+        <FutureSection />
+        <CelebrationSection />
         <GiftsSection />
         <MomentsSection />
+        <OpenWhenSection />
+        <ChapterSection />
+        <PromisesSection />
+        <ThousandSmilesSection />
         <Finale />
-
-        <footer
-          className="border-t bg-cream py-12 text-center"
-          style={{ borderColor: "oklch(0.75 0.11 355 / 0.18)" }}
-        >
-          <p className="font-display text-xl tracking-[0.4em] text-gold-metal">{couple.monogram}</p>
-          <p className="mt-4 text-xs tracking-[0.18em] text-cocoa/60">{footer.line1}</p>
-          <p className="mt-2 text-[0.6rem] uppercase tracking-[0.4em] text-cocoa/40">
-            {footer.line2}
-          </p>
-        </footer>
+        <RomanticFooter />
       </main>
     </MotionConfig>
   );

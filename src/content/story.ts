@@ -199,7 +199,7 @@ export const moments = {
 
 export const finale = {
   kicker: "19th November",
-  heading: "Happy Birthday, My Most Special Person ♡",
+  heading: "The Last Thing I Want You to Know",
   message: [
     "19th November will always hold a special place in my heart. Today, I celebrate you, your beautiful presence, and the happiness you bring into my world.",
     "May your life be filled with countless smiles, unforgettable memories, and all the love your heart can hold.",

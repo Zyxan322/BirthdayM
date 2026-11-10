@@ -7,7 +7,7 @@ export function GiftsSection() {
   return (
     <section
       id="gifts"
-      className="relative overflow-hidden py-28 sm:py-36"
+      className="night-chapter relative overflow-hidden py-28 sm:py-36"
       style={{
         background:
           "linear-gradient(180deg, var(--cream), oklch(0.95 0.035 48) 45%, oklch(0.96 0.025 78) 75%, var(--cream) 100%)",

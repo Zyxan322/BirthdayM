@@ -1,18 +1,16 @@
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { finale } from "@/content/story";
+import { motion } from "motion/react";
+import { Link } from "@tanstack/react-router";
+import { couple, finale, footer } from "@/content/story";
 import { HeartSparkles } from "@/components/HeartSparkles";
-import { Heart, Sparkles } from "lucide-react";
+import { ArrowRight, Heart } from "lucide-react";
 
 export function Finale() {
-  const [surpriseOpen, setSurpriseOpen] = useState(false);
-
   return (
     <section
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-32 text-center"
+      className="night-chapter finale-chapter relative flex min-h-[82svh] items-center justify-center overflow-hidden px-6 py-32 text-center"
       style={{
         background:
-          "radial-gradient(70% 60% at 50% 30%, oklch(0.97 0.025 78), oklch(0.94 0.035 48) 55%, oklch(0.92 0.04 64) 100%)",
+          "radial-gradient(70% 60% at 50% 30%, oklch(0.27 0.065 325), oklch(0.15 0.035 285) 58%, oklch(0.1 0.02 280) 100%)",
       }}
     >
       <HeartSparkles hearts={12} sparkles={18} />
@@ -45,8 +43,8 @@ export function Finale() {
           className="mt-7 font-display text-4xl leading-[1.1] sm:text-6xl"
         >
           <span
-            className="text-gold-metal"
-            style={{ textShadow: "0 18px 50px oklch(0.81 0.09 85 / 0.25)" }}
+            className="text-rose-glow"
+            style={{ textShadow: "0 18px 50px oklch(0.77 0.12 355 / 0.25)" }}
           >
             {finale.heading}
           </span>
@@ -87,43 +85,42 @@ export function Finale() {
           “{finale.closing}”
         </motion.p>
 
-        <button
-          type="button"
-          className="finale-surprise-toggle mx-auto mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-xs uppercase tracking-[0.14em] transition-all"
-          aria-expanded={surpriseOpen}
-          aria-controls="finale-surprise-message"
-          onClick={() => setSurpriseOpen((open) => !open)}
-        >
-          <Sparkles size={16} aria-hidden="true" />
-          {surpriseOpen ? "Keep this little note close" : "One last little surprise"}
-        </button>
-
-        <AnimatePresence initial={false}>
-          {surpriseOpen && (
-            <motion.p
-              id="finale-surprise-message"
-              initial={{ opacity: 0, y: 14, height: 0 }}
-              animate={{ opacity: 1, y: 0, height: "auto" }}
-              exit={{ opacity: 0, y: 8, height: 0 }}
-              transition={{ duration: 0.35 }}
-              className="finale-surprise-message mx-auto mt-5 max-w-2xl overflow-hidden rounded-3xl px-6 py-6 font-display text-lg italic leading-relaxed text-cocoa/80 sm:px-10 sm:py-8 sm:text-xl"
-              aria-live="polite"
-            >
-              {finale.surpriseMessage}
-            </motion.p>
-          )}
-        </AnimatePresence>
-
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, delay: 2.4 }}
-          className="mt-12 text-[0.6rem] uppercase tracking-[0.5em] text-cocoa/45"
+          className="mt-12 text-[0.6rem] uppercase tracking-[0.5em] text-white/45"
         >
           {finale.dateLabel}
         </motion.p>
       </div>
     </section>
+  );
+}
+
+export function RomanticFooter() {
+  return (
+    <footer className="romantic-footer relative isolate overflow-hidden px-6 py-20 text-center sm:px-10 sm:py-28">
+      <HeartSparkles hearts={7} sparkles={12} />
+      <div className="relative z-10 mx-auto max-w-3xl">
+        <p className="chapter-eyebrow">One more thing, just for you</p>
+        <p className="mx-auto mt-5 max-w-2xl font-display text-xl italic leading-relaxed text-white/70 sm:text-2xl">
+          There's something more I want you to know... Something I could never fit into all these
+          words.
+        </p>
+        <Link to="/my-love-for-you" className="last-surprise-button mx-auto mt-9">
+          <Heart size={17} fill="currentColor" aria-hidden="true" />
+          One Last Surprise, Moiza
+          <ArrowRight size={17} aria-hidden="true" />
+        </Link>
+        <p className="mt-12 font-display text-lg tracking-[0.35em] text-white/70">
+          {couple.monogram}
+        </p>
+        <p className="mt-3 text-[0.6rem] uppercase tracking-[0.32em] text-white/40">
+          {footer.line1} · {footer.line2}
+        </p>
+      </div>
+    </footer>
   );
 }
