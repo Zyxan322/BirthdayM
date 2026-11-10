@@ -12,21 +12,14 @@ export function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const syncPlayback = () => {
-      if (motionPreference.matches) {
-        video.pause();
-        return;
-      }
+    const startPlayback = () => {
       video.play().catch(() => {
         // The poster remains visible if a browser blocks decorative autoplay.
       });
     };
 
-    syncPlayback();
-    motionPreference.addEventListener("change", syncPlayback);
+    startPlayback();
     return () => {
-      motionPreference.removeEventListener("change", syncPlayback);
       video.pause();
     };
   }, []);
@@ -39,6 +32,7 @@ export function Hero() {
       <video
         ref={videoRef}
         className="hero-video absolute inset-0 -z-20 h-full w-full object-cover"
+        autoPlay
         muted
         loop
         playsInline

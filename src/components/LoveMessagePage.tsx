@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowLeft, Heart, Sparkles } from "lucide-react";
+import { ArrowLeft, Cake, Heart, Sparkles } from "lucide-react";
 import { HeartSparkles } from "@/components/HeartSparkles";
 import { MusicToggle } from "@/components/MusicToggle";
 import { Reveal } from "@/components/Reveal";
@@ -17,8 +17,8 @@ export function LoveMessagePage() {
           <ArrowLeft size={16} aria-hidden="true" />
           Back to the birthday story
         </Link>
-        <span className="font-display text-sm tracking-[0.3em] text-white/60">
-          {couple.monogram}
+        <span className="text-rose-glow" aria-label="Birthday cake">
+          <Cake size={24} strokeWidth={1.7} aria-hidden="true" />
         </span>
       </header>
 

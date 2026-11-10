@@ -118,9 +118,10 @@ export function BirthdaySurprise() {
           >
             <Link
               to="/"
-              className="surprise-monogram font-display text-lg tracking-[0.22em] sm:text-xl"
+              aria-label="Birthday cake, back to home"
+              className="surprise-monogram inline-flex items-center justify-center"
             >
-              {couple.monogram}
+              <Cake size={24} strokeWidth={1.7} aria-hidden="true" />
             </Link>
             <ul className="surprise-nav-links hidden items-center gap-7 xl:flex">
               <li>

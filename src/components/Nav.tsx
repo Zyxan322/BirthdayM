@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { couple, nav } from "@/content/story";
+import { nav } from "@/content/story";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Cake, Menu, X } from "lucide-react";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,12 +39,13 @@ export function Nav() {
       >
         <a
           href="#top"
+          aria-label="Birthday cake, back to top"
           className={cn(
-            "site-nav-brand font-display text-lg tracking-[0.22em] sm:text-xl",
+            "site-nav-brand inline-flex items-center justify-center",
             scrolled && "is-scrolled",
           )}
         >
-          {couple.monogram}
+          <Cake size={24} strokeWidth={1.7} aria-hidden="true" />
         </a>
 
         <ul className="site-nav-links hidden items-center gap-7 text-[0.65rem] uppercase tracking-[0.2em] xl:flex">
