@@ -1,39 +1,37 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
-import song from "@/assets/ijazat.mp3.asset.json";
+import songUrl from "@/assets/Golden Brown - The Stranglers (slowed + reverb).mp3";
 
 export function MusicToggle() {
   const ref = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
+  const [playbackError, setPlaybackError] = useState(false);
 
   useEffect(() => {
-    const audio = new Audio(song.url);
+    const audio = new Audio(songUrl);
     audio.loop = true;
     audio.volume = 0.45;
+    audio.preload = "none";
     ref.current = audio;
 
-    const tryPlay = () => {
-      audio
-        .play()
-        .then(() => setPlaying(true))
-        .catch(() => setPlaying(false));
+    const onPlay = () => {
+      setPlaying(true);
+      setPlaybackError(false);
     };
-    tryPlay();
+    const onPause = () => setPlaying(false);
+    const onError = () => {
+      setPlaying(false);
+      setPlaybackError(true);
+    };
 
-    const onFirst = () => {
-      if (audio.paused) tryPlay();
-      window.removeEventListener("pointerdown", onFirst);
-      window.removeEventListener("keydown", onFirst);
-      window.removeEventListener("scroll", onFirst);
-    };
-    window.addEventListener("pointerdown", onFirst);
-    window.addEventListener("keydown", onFirst);
-    window.addEventListener("scroll", onFirst, { passive: true });
+    audio.addEventListener("play", onPlay);
+    audio.addEventListener("pause", onPause);
+    audio.addEventListener("error", onError);
 
     return () => {
-      window.removeEventListener("pointerdown", onFirst);
-      window.removeEventListener("keydown", onFirst);
-      window.removeEventListener("scroll", onFirst);
+      audio.removeEventListener("play", onPlay);
+      audio.removeEventListener("pause", onPause);
+      audio.removeEventListener("error", onError);
       audio.pause();
       ref.current = null;
     };
@@ -43,17 +41,21 @@ export function MusicToggle() {
     const audio = ref.current;
     if (!audio) return;
     if (audio.paused) {
-      audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+      setPlaybackError(false);
+      audio.play().catch(() => {
+        setPlaying(false);
+        setPlaybackError(true);
+      });
     } else {
       audio.pause();
-      setPlaying(false);
     }
   };
 
   return (
     <button
       onClick={toggle}
-      aria-label={playing ? "Pause music" : "Play music"}
+      aria-label={playing ? "Pause background music" : "Play background music"}
+      title={`${playing ? "Pause" : "Play"} Golden Brown`}
       className="fixed right-4 top-1/2 z-[60] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border backdrop-blur-xl transition-all duration-500 hover:scale-110 sm:right-6"
       style={{
         borderColor: "oklch(0.75 0.11 355 / 0.4)",
@@ -65,6 +67,13 @@ export function MusicToggle() {
       }}
     >
       {playing ? <Volume2 size={18} /> : <VolumeX size={18} />}
+      <span className="sr-only" role="status" aria-live="polite">
+        {playbackError
+          ? "Background music could not be played. Try again."
+          : playing
+            ? "Background music playing."
+            : ""}
+      </span>
       {playing && (
         <span
           className="pointer-events-none absolute inset-0 rounded-full animate-ping"

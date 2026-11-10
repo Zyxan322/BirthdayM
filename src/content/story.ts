@@ -154,14 +154,46 @@ export const moments = {
   subheading:
     "Cake, candles, flowers and everything that makes your day beautiful. Tap any moment to see it up close.",
   items: [
-    { src: images.cakeHero, caption: "The Birthday Cake", note: "Pink, cream and gold — made for the most special day." },
-    { src: images.candles, caption: "Candlelight", note: "Make a wish. I already made mine — it's you." },
-    { src: images.roses, caption: "Fresh Flowers", note: "Blush roses and peonies for the girl of the day." },
-    { src: images.gifts, caption: "Gift Boxes", note: "Pink ribbon, gold wax, and something inside just for you." },
-    { src: images.teddy, caption: "Teddy & Heart", note: "A soft little guardian for all your sweet dreams." },
-    { src: images.cupcakes, caption: "Sweet Treats", note: "Strawberries, cream, and a little bit of celebration." },
-    { src: images.balloons, caption: "Balloons", note: "Hearts floating everywhere — the way mine does today." },
-    { src: images.letterImg, caption: "The Letter", note: "Sealed with gold, written with everything I feel." },
+    {
+      src: images.cakeHero,
+      caption: "The Birthday Cake",
+      note: "Pink, cream and gold — made for the most special day.",
+    },
+    {
+      src: images.candles,
+      caption: "Candlelight",
+      note: "Make a wish. I already made mine — it's you.",
+    },
+    {
+      src: images.roses,
+      caption: "Fresh Flowers",
+      note: "Blush roses and peonies for the girl of the day.",
+    },
+    {
+      src: images.gifts,
+      caption: "Gift Boxes",
+      note: "Pink ribbon, gold wax, and something inside just for you.",
+    },
+    {
+      src: images.teddy,
+      caption: "Teddy & Heart",
+      note: "A soft little guardian for all your sweet dreams.",
+    },
+    {
+      src: images.cupcakes,
+      caption: "Sweet Treats",
+      note: "Strawberries, cream, and a little bit of celebration.",
+    },
+    {
+      src: images.balloons,
+      caption: "Balloons",
+      note: "Hearts floating everywhere — the way mine does today.",
+    },
+    {
+      src: images.letterImg,
+      caption: "The Letter",
+      note: "Sealed with gold, written with everything I feel.",
+    },
   ],
 };
 
@@ -174,6 +206,8 @@ export const finale = {
   ],
   closing: "Happy birthday, my love, Moiza. Forever wishing you happiness, from Zeeshan. ♡",
   dateLabel: "19 November 2026",
+  surpriseMessage:
+    "Moiza, if I could give you one thing to keep, it would be the certainty that you are deeply loved—not just today, but in every ordinary moment. Your happiness matters to me, and I will keep choosing to celebrate the beautiful person you are.",
 };
 
 export const footer = {

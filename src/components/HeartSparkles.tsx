@@ -33,7 +33,13 @@ function makeFloaters(count: number, seedOffset: number): Floater[] {
  * Gentle floating hearts and champagne-gold sparkles.
  * Purely decorative — hover-safe and pointer-events free.
  */
-export function HeartSparkles({ hearts = 9, sparkles = 14 }: { hearts?: number; sparkles?: number }) {
+export function HeartSparkles({
+  hearts = 9,
+  sparkles = 14,
+}: {
+  hearts?: number;
+  sparkles?: number;
+}) {
   const floaters = useMemo(() => makeFloaters(hearts, 3), [hearts]);
   const sparkList = useMemo(
     () =>

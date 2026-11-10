@@ -16,6 +16,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { couple, images } from "@/content/story";
 import { Reveal } from "@/components/Reveal";
+import { MusicToggle } from "@/components/MusicToggle";
 
 const letterParagraphs = [
   "Happy Birthday to the most special person in my life.",
@@ -81,6 +82,7 @@ export function BirthdaySurprise() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [wishCount, setWishCount] = useState(0);
   const [wishMessageVisible, setWishMessageVisible] = useState(false);
+  const [revealedReasons, setRevealedReasons] = useState<Set<number>>(() => new Set());
   const resetWishTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
@@ -282,11 +284,42 @@ export function BirthdaySurprise() {
                 {reasons.map(({ title, text, icon: Icon }, index) => (
                   <Reveal key={title} delay={index * 0.07}>
                     <article className="surprise-reason-card h-full">
-                      <span className="surprise-icon-wrap">
-                        <Icon size={20} strokeWidth={1.6} aria-hidden="true" />
-                      </span>
-                      <h3 className="mt-6 font-display text-2xl text-cocoa">{title}</h3>
-                      <p className="mt-3 text-sm leading-7 text-cocoa/70">{text}</p>
+                      <button
+                        type="button"
+                        className="w-full text-left"
+                        aria-expanded={revealedReasons.has(index)}
+                        aria-controls={`reason-note-${index}`}
+                        onClick={() =>
+                          setRevealedReasons((current) => {
+                            const next = new Set(current);
+                            if (next.has(index)) next.delete(index);
+                            else next.add(index);
+                            return next;
+                          })
+                        }
+                      >
+                        <span className="surprise-icon-wrap">
+                          <Icon size={20} strokeWidth={1.6} aria-hidden="true" />
+                        </span>
+                        <span className="mt-6 block font-display text-2xl text-cocoa">{title}</span>
+                        <span className="mt-3 block text-[0.65rem] uppercase tracking-[0.16em] text-gold-deep">
+                          {revealedReasons.has(index) ? "A little note for you" : "Tap to reveal"}
+                        </span>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {revealedReasons.has(index) && (
+                          <motion.p
+                            id={`reason-note-${index}`}
+                            initial={{ opacity: 0, height: 0, y: 8 }}
+                            animate={{ opacity: 1, height: "auto", y: 0 }}
+                            exit={{ opacity: 0, height: 0, y: 8 }}
+                            transition={{ duration: 0.24 }}
+                            className="overflow-hidden pt-3 text-sm leading-7 text-cocoa/70"
+                          >
+                            {text}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
                     </article>
                   </Reveal>
                 ))}
@@ -480,6 +513,7 @@ export function BirthdaySurprise() {
           </section>
         </motion.div>
       </main>
+      <MusicToggle />
     </MotionConfig>
   );
 }

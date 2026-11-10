@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { moments } from "@/content/story";
 import { Reveal } from "@/components/Reveal";
@@ -8,6 +8,41 @@ import { Camera, Heart, X } from "lucide-react";
 export function MomentsSection() {
   const [open, setOpen] = useState<number | null>(null);
   const active = open === null ? null : (moments.items[open] ?? null);
+  const isOpen = open !== null;
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(null);
+      if (event.key === "ArrowLeft") {
+        setOpen((index) =>
+          index === null ? null : (index - 1 + moments.items.length) % moments.items.length,
+        );
+      }
+      if (event.key === "ArrowRight") {
+        setOpen((index) => (index === null ? null : (index + 1) % moments.items.length));
+      }
+      if (event.key === "Tab") {
+        event.preventDefault();
+        closeRef.current?.focus();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      triggerRef.current?.focus();
+      triggerRef.current = null;
+    };
+  }, [isOpen]);
 
   return (
     <section
@@ -39,8 +74,12 @@ export function MomentsSection() {
               <TiltCard intensity={9} className="h-full">
                 <button
                   type="button"
-                  onClick={() => setOpen(i)}
+                  onClick={(event) => {
+                    triggerRef.current = event.currentTarget;
+                    setOpen(i);
+                  }}
                   aria-label={`See ${m.caption} up close`}
+                  aria-haspopup="dialog"
                   className="surface-glass group block w-full overflow-hidden rounded-[1.6rem] text-left"
                 >
                   <div className="relative overflow-hidden">
@@ -92,7 +131,7 @@ export function MomentsSection() {
             onClick={() => setOpen(null)}
             role="dialog"
             aria-modal="true"
-            aria-label={active.caption}
+            aria-labelledby="moments-dialog-title"
           >
             <motion.figure
               initial={{ scale: 0.9, y: 30, opacity: 0 }}
@@ -113,15 +152,18 @@ export function MomentsSection() {
                   className="max-h-[62vh] w-full object-cover"
                 />
                 <figcaption className="px-8 py-7 text-center">
-                  <h3 className="font-display text-3xl text-cocoa">{active.caption}</h3>
+                  <h3 id="moments-dialog-title" className="font-display text-3xl text-cocoa">
+                    {active.caption}
+                  </h3>
                   <div className="gold-hairline mx-auto my-4 w-16" />
                   <p className="text-sm font-light leading-relaxed text-cocoa/65">{active.note}</p>
                 </figcaption>
               </div>
               <button
+                ref={closeRef}
                 type="button"
                 onClick={() => setOpen(null)}
-                aria-label="Close"
+                aria-label="Close photo"
                 className="absolute -right-2 -top-2 flex h-10 w-10 items-center justify-center rounded-full text-cocoa transition-transform hover:scale-110 sm:-right-4 sm:-top-4"
                 style={{
                   background: "oklch(0.98 0.015 40)",

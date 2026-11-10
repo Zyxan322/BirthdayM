@@ -1,9 +1,12 @@
-import { motion } from "motion/react";
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { finale } from "@/content/story";
 import { HeartSparkles } from "@/components/HeartSparkles";
-import { Heart } from "lucide-react";
+import { Heart, Sparkles } from "lucide-react";
 
 export function Finale() {
+  const [surpriseOpen, setSurpriseOpen] = useState(false);
+
   return (
     <section
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-32 text-center"
@@ -71,7 +74,7 @@ export function Finale() {
           transition={{ duration: 1, delay: 1.4 }}
           className="mt-14 flex justify-center"
         >
-          <Heart size={76} fill="#dc2626" color="#dc2626" strokeWidth={0} />
+          <Heart size={76} fill="var(--rose)" color="var(--rose)" strokeWidth={0} />
         </motion.div>
 
         <motion.p
@@ -83,6 +86,33 @@ export function Finale() {
         >
           “{finale.closing}”
         </motion.p>
+
+        <button
+          type="button"
+          className="finale-surprise-toggle mx-auto mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-xs uppercase tracking-[0.14em] transition-all"
+          aria-expanded={surpriseOpen}
+          aria-controls="finale-surprise-message"
+          onClick={() => setSurpriseOpen((open) => !open)}
+        >
+          <Sparkles size={16} aria-hidden="true" />
+          {surpriseOpen ? "Keep this little note close" : "One last little surprise"}
+        </button>
+
+        <AnimatePresence initial={false}>
+          {surpriseOpen && (
+            <motion.p
+              id="finale-surprise-message"
+              initial={{ opacity: 0, y: 14, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: "auto" }}
+              exit={{ opacity: 0, y: 8, height: 0 }}
+              transition={{ duration: 0.35 }}
+              className="finale-surprise-message mx-auto mt-5 max-w-2xl overflow-hidden rounded-3xl px-6 py-6 font-display text-lg italic leading-relaxed text-cocoa/80 sm:px-10 sm:py-8 sm:text-xl"
+              aria-live="polite"
+            >
+              {finale.surpriseMessage}
+            </motion.p>
+          )}
+        </AnimatePresence>
 
         <motion.p
           initial={{ opacity: 0 }}

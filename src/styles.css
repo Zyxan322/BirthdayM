@@ -720,6 +720,25 @@
   background: oklch(1 0 0 / 0.74);
 }
 
+.finale-surprise-toggle {
+  border: 1px solid oklch(0.62 0.085 65 / 0.35);
+  background: oklch(0.985 0.012 78 / 0.68);
+  color: var(--cocoa);
+  box-shadow: 0 12px 30px -20px oklch(0.32 0.05 48 / 0.38);
+}
+
+.finale-surprise-toggle:hover {
+  transform: translateY(-2px);
+  border-color: oklch(0.56 0.095 35 / 0.55);
+  background: oklch(0.995 0.01 78);
+}
+
+.finale-surprise-message {
+  border: 1px solid oklch(0.68 0.07 55 / 0.2);
+  background: linear-gradient(145deg, oklch(1 0 0 / 0.82), oklch(0.97 0.025 66 / 0.78));
+  box-shadow: var(--shadow-soft);
+}
+
 @keyframes hero-image-settle {
   from {
     transform: scale(1.05);
@@ -768,7 +787,12 @@
 
   * {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .tilt-card-interactive {
+    transform: none !important;
   }
 }
 

@@ -25,7 +25,7 @@ function makePetals(count: number): Petal[] {
     duration: 11 + ((i * 3.7) % 9),
     size: 12 + ((i * 5) % 16),
     drift: (((i * 13) % 20) - 10) * 12,
-    spin: ((i % 2 === 0 ? 1 : -1) * (180 + ((i * 37) % 320))),
+    spin: (i % 2 === 0 ? 1 : -1) * (180 + ((i * 37) % 320)),
     hue: hues[i % hues.length] as string,
     opacity: 0.3 + ((i * 7) % 40) / 100,
   }));
@@ -36,10 +36,7 @@ export function RosePetals({ count = 26 }: { count?: number }) {
   const petals = useMemo(() => makePetals(count), [count]);
 
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-20 overflow-hidden"
-    >
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
       {petals.map((p, i) => (
         <motion.div
           key={i}

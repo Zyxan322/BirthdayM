@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -5,18 +6,43 @@ import { hero } from "@/content/story";
 import heroVideo from "@/assets/Birthday_cake_in_decorated_room_8acf1892.mp4";
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncPlayback = () => {
+      if (motionPreference.matches) {
+        video.pause();
+        return;
+      }
+      video.play().catch(() => {
+        // The poster remains visible if a browser blocks decorative autoplay.
+      });
+    };
+
+    syncPlayback();
+    motionPreference.addEventListener("change", syncPlayback);
+    return () => {
+      motionPreference.removeEventListener("change", syncPlayback);
+      video.pause();
+    };
+  }, []);
+
   return (
     <section
       id="top"
       className="hero-section relative isolate flex min-h-[100svh] items-end overflow-hidden px-6 pb-24 pt-32 sm:pb-28 lg:items-center"
     >
       <video
+        ref={videoRef}
         className="hero-video absolute inset-0 -z-20 h-full w-full object-cover"
-        autoPlay
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         poster={hero.cake}
         aria-hidden="true"
         tabIndex={-1}
